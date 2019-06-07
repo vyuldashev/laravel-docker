@@ -1,33 +1,28 @@
 #!/usr/bin/env bash
 
 set -e
+#
+sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php/${PHP_VERSION}/cli/php.ini
+sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php/${PHP_VERSION}/fpm/php.ini
 
-role=${CONTAINER_ROLE:-web}
-env=${APP_ENV:-production}
-link_storage=${LINK_STORAGE:false}
-
-if [[ "$link_storage" ]]; then
-        php /var/www/artisan storage:link
+# OPCache extreme mode.
+if [[ $OPCACHE_MODE == "extreme" ]]; then
+    # enable extreme caching for OPCache.
+    echo "opcache.enable=1" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.memory_consumption=512" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.interned_strings_buffer=128" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.max_accelerated_files=32531" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.validate_timestamps=0" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.save_comments=1" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
+    echo "opcache.fast_shutdown=0" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
 fi
 
-if [[ "$role" = "web" ]]; then
-
-    exec /init
-
-elif [[ "$role" = "queue" ]]; then
-
-    worker_queue_name=${WORKER_QUEUE_NAME:-default}
-    worker_timeout=${WORKER_TIMEOUT:-60}
-    worker_sleep=${WORKER_SLEEP:-3}
-
-    php /var/www/artisan queue:work --queue=${worker_queue_name} --timeout=${worker_timeout} --sleep=${worker_sleep}
-
-elif [[ "$role" = "scheduler" ]]; then
-
-    while [[ true ]]
-    do
-      php /var/www/artisan schedule:run --verbose --version --no-interaction &
-      sleep 60
-    done
-
+if [[ $OPCACHE_MODE == "disabled" ]]; then
+    # disable extension.
+    sed -i "/zend_extension=opcache/c\;zend_extension=opcache" /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini
+    # set enabled as zero, case extension still gets loaded (by other extension).
+    echo "opcache.enable=0" | tee -a /etc/php/${PHP_VERSION}/mods-available/10-opcache.ini > /dev/null
 fi
+
+# run the original command
+exec "$@"

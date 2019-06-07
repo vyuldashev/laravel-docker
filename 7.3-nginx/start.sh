@@ -2,11 +2,12 @@
 
 set -e
 
-env=${APP_ENV:-production}
-link_storage=${LINK_STORAGE:false}
-
-if [[ "$link_storage" ]]; then
-        php /var/www/artisan storage:link
+if [[ $STORAGE_LINK == "true" ]]; then
+        php /var/www/app/artisan storage:link
 fi
 
-exec /init
+# Starts FPM
+nohup /usr/sbin/php-fpm${PHP_VERSION} -F -O 2>&1 &
+
+# Starts NGINX!
+/usr/sbin/nginx
