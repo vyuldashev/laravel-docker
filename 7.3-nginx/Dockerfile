@@ -1,5 +1,7 @@
 FROM misterio92/laravel:7.3
 
+LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
+
 ENV STORAGE_LINK="false"
 
 COPY start.sh /home/start.sh
