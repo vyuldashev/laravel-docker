@@ -17,6 +17,7 @@ RUN apt-get update && \
     apt-get install -y \
     vim \
     nano \
+    curl \
     php${PHP_VERSION}-opcache \
     php${PHP_VERSION}-curl \
     php${PHP_VERSION}-cli \
