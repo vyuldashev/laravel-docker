@@ -16,7 +16,7 @@ WORKDIR /var/www/app
 
 ADD crontab /app/crontab
 
-ONBUILD ADD . /var/www/app
+ONBUILD COPY . /var/www/app
 
 ENTRYPOINT ["/scripts/start.sh"]
 CMD ["supercronic", "/app/crontab"]

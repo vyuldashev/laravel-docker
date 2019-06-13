@@ -18,7 +18,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /var/www/app
 
-ONBUILD ADD . /var/www/app
+ONBUILD COPY . /var/www/app
 
 EXPOSE 80
 

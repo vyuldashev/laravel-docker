@@ -49,7 +49,7 @@ RUN apt-get update && \
 
 WORKDIR /var/www/app
 
-ONBUILD ADD . /var/www/app
+ONBUILD COPY . /var/www/app
 
 ENTRYPOINT ["/scripts/start.sh"]
 
