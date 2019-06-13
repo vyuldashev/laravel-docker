@@ -38,7 +38,7 @@ RUN apt-get update && \
     chmod +x /scripts/start.sh && \
     mkdir -p /run/php && chmod -R 755 /run/php && \
     mkdir -p /var/www/app && \
-    sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
+    sed -i "/listen = .*/c\listen = 0.0.0.0:9000" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
     sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
     sed -i "/;clear_env = .*/c\clear_env = no" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
     sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
