@@ -7,6 +7,9 @@ ENV PHP_VERSION 7.3
 ENV OPCACHE_MODE="extreme" \
     PHP_MEMORY_LIMIT=256M
 
+ENV CONFIG_CACHE=true \
+    ROUTE_CACHE=true
+
 # Add the ENTRYPOINT script
 ADD start.sh /scripts/start.sh
 

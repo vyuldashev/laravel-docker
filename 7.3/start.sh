@@ -24,5 +24,17 @@ if [[ $OPCACHE_MODE == "disabled" ]]; then
     echo "opcache.enable=0" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
 fi
 
+if [[ $CONFIG_CACHE == true ]]; then
+
+    php /var/www/app/artisan config:cache
+
+fi
+
+if [[ $ROUTE_CACHE == true ]]; then
+
+    php /var/www/app/artisan route:cache
+
+fi
+
 # run the original command
 exec "$@"
