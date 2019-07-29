@@ -9,7 +9,7 @@ sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php/${PHP_VE
 if [[ $OPCACHE_MODE == "extreme" ]]; then
     # enable extreme caching for OPCache.
     echo "opcache.enable=1" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
-    echo "opcache.memory_consumption=512" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
+    echo "opcache.memory_consumption=$PHP_OPCACHE_MEMORY_CONSUMPTION" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
     echo "opcache.interned_strings_buffer=128" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
     echo "opcache.max_accelerated_files=32531" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null
     echo "opcache.validate_timestamps=0" | tee -a /etc/php/${PHP_VERSION}/mods-available/opcache.ini > /dev/null

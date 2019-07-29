@@ -5,6 +5,7 @@ LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 ENV PHP_VERSION 7.3
 
 ENV OPCACHE_MODE="extreme" \
+    PHP_OPCACHE_MEMORY_CONSUMPTION="64" \
     PHP_MEMORY_LIMIT=256M
 
 ENV CONFIG_CACHE=true \
