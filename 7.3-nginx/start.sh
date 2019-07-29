@@ -2,9 +2,7 @@
 
 set -e
 
-if [[ $STORAGE_LINK == "true" ]]; then
-        php /var/www/app/artisan storage:link
-fi
+. /scripts/start.sh
 
 # Starts FPM
 nohup /usr/sbin/php-fpm${PHP_VERSION} -F -O 2>&1 &

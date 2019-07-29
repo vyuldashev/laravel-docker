@@ -9,7 +9,9 @@ ENV OPCACHE_MODE="extreme" \
     PHP_MEMORY_LIMIT=256M
 
 ENV CONFIG_CACHE=true \
-    ROUTE_CACHE=true
+    ROUTE_CACHE=true \
+    VIEW_CACHE=true \
+    STORAGE_LINK=false
 
 # Add the ENTRYPOINT script
 ADD start.sh /scripts/start.sh
@@ -41,15 +43,7 @@ RUN apt-get update && \
     apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* && \
     chmod +x /scripts/start.sh && \
     mkdir -p /run/php && chmod -R 755 /run/php && \
-    mkdir -p /var/www/app && \
-    sed -i "/listen = .*/c\listen = 0.0.0.0:9000" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
-    sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
-    sed -i "/;clear_env = .*/c\clear_env = no" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
-    sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
-    sed -i "/;daemonize = .*/c\daemonize = yes" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf && \
-    sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/${PHP_VERSION}/fpm/php-fpm.conf && \
-    sed -i "/post_max_size = .*/c\post_max_size = 1000M" /etc/php/${PHP_VERSION}/fpm/php.ini && \
-    sed -i "/upload_max_filesize = .*/c\upload_max_filesize = 1000M" /etc/php/${PHP_VERSION}/fpm/php.ini
+    mkdir -p /var/www/app
 
 WORKDIR /var/www/app
 
