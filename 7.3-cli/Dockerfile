@@ -21,6 +21,6 @@ WORKDIR /var/www/app
 
 ONBUILD COPY . /var/www/app
 
-ENTRYPOINT ["laravel-entrypoint.sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
 CMD ["php", "artisan"]
 
