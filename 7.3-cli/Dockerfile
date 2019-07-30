@@ -6,6 +6,7 @@ ENV CONFIG_CACHE=true \
     STORAGE_LINK=false
 
 COPY entrypoint.sh /scripts/entrypoint.sh
+RUN chmod +x /scripts/entrypoint.sh
 
 RUN apt-get update && apt-get install -y \
     libzip-dev \
