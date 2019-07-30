@@ -1,4 +1,4 @@
-FROM misterio92/laravel:7.3
+FROM misterio92/laravel:7.3-cli
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
@@ -12,11 +12,10 @@ RUN curl -fsSLO "$SUPERCRONIC_URL" \
      && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
      && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
 
-WORKDIR /var/www/app
-
 ADD crontab /app/crontab
+
+WORKDIR /var/www/app
 
 ONBUILD COPY . /var/www/app
 
-ENTRYPOINT ["/scripts/start.sh"]
 CMD ["supercronic", "/app/crontab"]
