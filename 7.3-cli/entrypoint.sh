@@ -2,8 +2,6 @@
 
 set -e
 
-sed -i "/memory_limit = .*/c\memory_limit = $PHP_MEMORY_LIMIT" /etc/php/${PHP_VERSION}/cli/php.ini
-
 # Laravel Optimization
 
 if [[ $CONFIG_CACHE == true ]]; then

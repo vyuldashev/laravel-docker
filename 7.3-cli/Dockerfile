@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     unzip
 
 RUN docker-php-ext-configure zip --with-libzip && \
-    docker-php-ext-install pdo_mysql zip bcmath
+    docker-php-ext-install pdo_mysql zip bcmath pcntl
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
