@@ -3,7 +3,7 @@ FROM php:7.3-fpm
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="0" \
-    PHP_OPCACHE_MAX_ACCELERATED_FILES="10000" \
+    PHP_OPCACHE_MAX_ACCELERATED_FILES="20000" \
     PHP_OPCACHE_MEMORY_CONSUMPTION="192" \
     PHP_OPCACHE_MAX_WASTED_PERCENTAGE="10"
 
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     unzip
 
 RUN docker-php-ext-configure zip --with-libzip && \
-    docker-php-ext-install opcache pdo_mysql zip bcmath
+    docker-php-ext-install opcache pdo_mysql zip bcmath pcntl sockets
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
