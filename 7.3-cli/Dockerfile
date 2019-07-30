@@ -1,5 +1,7 @@
 FROM php:7.3-cli
 
+LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
+
 ENV CONFIG_CACHE=true \
     ROUTE_CACHE=true \
     VIEW_CACHE=true \
