@@ -1,6 +1,8 @@
-FROM nginx:1.17
+FROM nginx:1.17-perl
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
+
+ENV FPM_ADDRESS="fpm:9000"
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
