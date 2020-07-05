@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
-RUN docker-php-ext-configure zip --with-libzip && \
+RUN docker-php-ext-configure zip && \
     docker-php-ext-install opcache pdo_mysql zip bcmath pcntl sockets
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
