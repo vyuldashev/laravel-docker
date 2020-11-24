@@ -18,5 +18,11 @@ docker push misterio92/laravel:7.4-fpm
 
 docker push misterio92/laravel:7.4-scheduler
 
+docker push misterio92/laravel:8.0-cli
+
+docker push misterio92/laravel:8.0-fpm
+
+docker push misterio92/laravel:8.0-scheduler
+
 docker push misterio92/laravel:nginx
 
