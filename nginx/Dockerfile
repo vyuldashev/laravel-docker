@@ -1,4 +1,4 @@
-FROM nginx:1.17-perl
+FROM nginx:stable-alpine-perl
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 

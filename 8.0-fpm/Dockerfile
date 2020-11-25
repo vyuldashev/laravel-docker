@@ -1,4 +1,4 @@
-FROM php:8.0-rc-fpm
+FROM php:8.0-rc-fpm-alpine
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
@@ -12,7 +12,7 @@ ENV CONFIG_CACHE=true \
     VIEW_CACHE=true \
     STORAGE_LINK=false
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
     libzip-dev \
     zip \
     unzip

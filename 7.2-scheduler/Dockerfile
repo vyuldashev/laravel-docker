@@ -1,4 +1,4 @@
-FROM misterio92/laravel:7.2-cli
+FROM misterio92/laravel:7.2-cli-alpine
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 

@@ -1,4 +1,4 @@
-FROM php:8.0-rc-cli
+FROM php:8.0-rc-cli-alpine
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
@@ -10,7 +10,7 @@ ENV CONFIG_CACHE=true \
 COPY entrypoint.sh /scripts/entrypoint.sh
 RUN chmod +x /scripts/entrypoint.sh
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
     libzip-dev \
     zip \
     unzip
