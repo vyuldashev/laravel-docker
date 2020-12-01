@@ -1,4 +1,4 @@
-FROM php:8.0-rc-cli-alpine
+FROM php:8.0-cli-alpine
 
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
