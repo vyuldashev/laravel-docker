@@ -3,6 +3,7 @@ FROM nginx:stable-alpine-perl
 LABEL maintainer="Vladimir Yuldashev <misterio92@gmail.com>"
 
 ENV FPM_ADDRESS="fpm:9000"
+ENV NGINX_PORT="80"
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
