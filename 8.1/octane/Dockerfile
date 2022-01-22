@@ -27,7 +27,7 @@ RUN docker-php-ext-configure zip && \
     docker-php-ext-enable openswoole
 
 RUN apk add --update --no-cache gmp gmp-dev mysql-client && \
-    docker-php-ext-install openswoole
+    docker-php-ext-install gmp
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
