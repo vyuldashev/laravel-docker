@@ -20,7 +20,7 @@ RUN apk update && apk add \
     g++ \
     libc-dev \
     make && \
-    pecl install openswoole
+    pecl install openswoole -D 'enable-openssl="yes"'
 
 RUN docker-php-ext-configure zip && \
     docker-php-ext-install pdo_mysql zip bcmath pcntl && \
