@@ -16,8 +16,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libgmp10 \
     libgmp-dev \
-    default-mysql-client \
-    linux-headers
+    default-mysql-client
 
 RUN pecl install -D 'enable-openssl="yes"' openswoole
 
