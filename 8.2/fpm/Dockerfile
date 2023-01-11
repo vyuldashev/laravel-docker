@@ -15,7 +15,8 @@ ENV CONFIG_CACHE=true \
 RUN apk update && apk add \
     libzip-dev \
     zip \
-    unzip
+    unzip \
+    linux-headers
 
 RUN docker-php-ext-configure zip && \
     docker-php-ext-install opcache pdo_mysql zip bcmath pcntl sockets

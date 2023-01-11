@@ -14,7 +14,8 @@ RUN apk update && apk add \
     libzip-dev \
     zip \
     unzip \
-    openssl-dev
+    openssl-dev \
+    linux-headers
 
 RUN docker-php-ext-configure zip && \
     docker-php-ext-install pdo_mysql zip bcmath pcntl sockets
