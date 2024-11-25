@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [ '8.2', '8.3' ]
+        php: [ '8.2', '8.3', '8.4' ]
         image: [ cli, fpm ]
     name: ${{ matrix.php }}-${{ matrix.image }}
     steps:
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [ '8.2', '8.3' ]
+        php: [ '8.2', '8.3', '8.4' ]
     name: ${{ matrix.php }}-scheduler
     steps:
       -
@@ -84,7 +84,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [ '8.2', '8.3' ]
+        php: [ '8.2', '8.3', '8.4' ]
     name: ${{ matrix.php }}-octane
     steps:
       -
